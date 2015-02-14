@@ -1,0 +1,10 @@
+@(memesList: List[Mem])
+
+<ul>
+    @for(mem <- memesList) {
+        <li>
+            @mem.id. @mem.name -- @mem.description -- @mem.author
+            <a href="@routes.Memes.show(mem.id)">link</a>
+        </li>
+    }
+</ul>
