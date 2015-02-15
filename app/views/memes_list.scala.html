@@ -1,10 +1,16 @@
 @(memesList: List[Mem])
 
-<ul>
+<div id="grid" data-columns>
     @for(mem <- memesList) {
-        <li>
-            @mem.id. @mem.name -- @mem.imageUrl -- @mem.author
-            <a href="@routes.Memes.show(mem.id.get)">link</a>
-        </li>
+        <div class="text-center mem">
+            <h2>@mem.name</h2>
+            <a href="@routes.Memes.show(mem.id.get)">
+                <img src="@routes.Assets.at(s"images/${mem.imageUrl}")" class="img-thumbnail"/>
+            </a>
+            <br>
+            <h4>(@mem.author)</h4>
+        </div>
     }
-</ul>
+</div>
+
+<script src="@routes.Assets.at("javascripts/salvattore.js")" type="text/javascript"></script>

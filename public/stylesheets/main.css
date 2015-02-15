@@ -4,3 +4,22 @@ body {
 .starter-template {
     padding: 40px 15px;
 }
+
+#grid[data-columns]::before {
+    content: '3 .column.size-1of3';
+}
+
+.column {
+    float:left;
+}
+.size-1of3 {
+    width: 33.333%;
+}
+.mem {
+    background-color: #cccccc;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    border-radius: 5px;
+    border: solid #999999 1px;
+    margin: 4px 2px;
+}
