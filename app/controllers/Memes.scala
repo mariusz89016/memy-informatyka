@@ -21,7 +21,7 @@ object Memes extends Controller {
 
   def show(id: Long) = Action {
     val memesList = database.withSession(implicit session => memes.list)
-    val mem = memesList.find(x => x.id==id).get
+    val mem = memesList.find(x => x.id.get==id).get
     Ok(views.html.mem_page(mem))
 
   }

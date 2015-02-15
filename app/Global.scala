@@ -12,13 +12,13 @@ object Global extends GlobalSettings {
   lazy val database = Database.forDataSource(DB.getDataSource())
   override def onStart(app: Application): Unit = {
     database.withSession { implicit session =>
-      if (MTable.getTables("MEMES").list.isEmpty) {
+      if (MTable.getTables("memes").list.isEmpty) {
         memes.ddl.create
 
-        memes += Mem(1, "nazwa1", "opis1", "autor1")
-        memes += Mem(2, "nazwa2", "opis2", "autor2")
-        memes += Mem(3, "nazwa3", "opis3", "autor3")
-        memes += Mem(4, "nazwa4", "opis4", "autor4")
+        memes += Mem("nazwa1", "opis1", "dawkins.jpg")
+        memes += Mem("nazwa2", "opis2", "kilroy.gif")
+        memes += Mem("nazwa3", "opis3", "dawkins.jpg")
+        memes += Mem("nazwa4", "opis4", "kilroy.gif")
       }
     }
   }
