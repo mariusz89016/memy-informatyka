@@ -3,7 +3,7 @@ import play.api.GlobalSettings
 import play.api.Application
 import play.api.Play.current
 import play.api.db.DB
-import scala.slick.driver.H2Driver.simple._
+import scala.slick.driver.PostgresDriver.simple._
 import models.Memes
 
 object Global extends GlobalSettings {

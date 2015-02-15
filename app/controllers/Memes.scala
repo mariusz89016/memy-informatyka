@@ -6,7 +6,7 @@ import play.api.db.DB
 import play.api.mvc.{Action, Controller}
 import play.twirl.api.Html
 
-import scala.slick.driver.H2Driver.simple._
+import scala.slick.driver.PostgresDriver.simple._
 
 object Memes extends Controller {
   lazy val database = Database.forDataSource(DB.getDataSource())
