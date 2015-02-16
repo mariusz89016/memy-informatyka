@@ -1,0 +1,16 @@
+@(mem: Mem)
+<script src="@routes.Assets.at("javascripts/creating_mem.js")" type="text/javascript"></script>
+
+<div class="row">
+    <div class="text-center">
+        <span class="canvas__container">
+            <canvas id="canvas_bg" class="canvas__canvas"></canvas>
+            <canvas id="canvas_text" class="canvas__text"></canvas>
+        </span>
+        <br>
+        <img id="source" src="@routes.Assets.at(s"images/${mem.imageUrl}")" style="display: none"/>
+        <input id="up" type="text"/>
+        <br>
+        <input id="down" type="text"/>
+    </div>
+</div>

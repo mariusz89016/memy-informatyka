@@ -4,7 +4,6 @@ import models.Memes
 import play.api.Play.current
 import play.api.db.DB
 import play.api.mvc.{Action, Controller}
-import play.twirl.api.Html
 
 import scala.slick.driver.PostgresDriver.simple._
 
@@ -14,15 +13,16 @@ object Memes extends Controller {
 
   def list = Action {
     val memesList = database.withSession(implicit session => memes.list)
-    val content = views.html.memes_list.render(memesList)
-    val divWrapper = "<div class=\"starter-template\">"+content+"</div>"
-    Ok(views.html.main.render("tytul", Html(divWrapper)))
+    Ok(views.html.main.render("tytul", views.html.memes_list.render(memesList)))
   }
 
   def show(id: Long) = Action {
-    val memesList = database.withSession(implicit session => memes.list)
-    val mem = memesList.find(x => x.id.get==id).get
-    Ok(views.html.mem_page(mem))
+    val mem = database.withSession(implicit session => memes.list.find(x => x.id.get==id).get)
+    Ok(views.html.main.render("tytul_mem", views.html.mem_page(mem)))
+  }
 
+  def create(id: Long) = Action {
+    val mem = database.withSession(implicit session => memes.list.find(x=>x.id.get==id).get)
+    Ok(views.html.main.render("create_mem", views.html.create_mem(mem)))
   }
 }

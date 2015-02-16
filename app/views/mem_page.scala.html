@@ -1,9 +1,16 @@
 @(mem: Mem)
 
-<div class="starter-template">
-    <p class="lead">Id: @mem.id</p>
-    <p class="lead">Name: @mem.name</p>
-    <p class="lead">Author: @mem.author</p>
-    <img src="@routes.Assets.at(s"images/${mem.imageUrl}")" />
-    <a href="@routes.Memes.list()">Wróc do listy</a>
+<div class="row text-center">
+    <h2>@mem.name</h2>
+    <img src="@routes.Assets.at(s"images/${mem.imageUrl}")" class="img-thumbnail" />
+    <h4>(@mem.author)</h4>
+    <br/>
+    <div class="btn-group" role="group">
+        <a class="btn btn-primary" href="@routes.Memes.list()">
+            <span class="glyphicon glyphicon-align-justify"></span> Back to list
+        </a>
+        <a class="btn btn-primary" href="@routes.Memes.create(mem.id.get)">
+            <span class="glyphicon glyphicon-plus"></span> Create from template
+        </a>
+    </div>
 </div>

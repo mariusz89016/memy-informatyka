@@ -6,6 +6,7 @@
 GET        /                    controllers.Application.index
 GET        /memes               controllers.Memes.list
 GET        /memes/:id           controllers.Memes.show(id:Long)
+GET        /create/:id          controllers.Memes.create(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path

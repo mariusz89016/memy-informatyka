@@ -1,9 +1,6 @@
 body {
     padding-top: 50px;
 }
-.starter-template {
-    padding: 40px 15px;
-}
 
 #grid[data-columns]::before {
     content: '3 .column.size-1of3';
@@ -22,4 +19,21 @@ body {
     border-radius: 5px;
     border: solid #999999 1px;
     margin: 4px 2px;
+}
+
+body > .container {
+    padding-top: 10px;
+}
+
+.canvas__container {
+    position: relative;
+}
+.canvas__canvas {
+    position: relative;
+    z-index: 1;
+}
+.canvas__text {
+    left: 0;
+    position: absolute;
+    z-index: 2;
 }
