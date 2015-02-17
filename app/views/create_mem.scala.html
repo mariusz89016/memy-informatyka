@@ -1,4 +1,5 @@
-@(mem: Mem)
+@(mem: Mem, memData: Form[MemData])
+
 <script src="@routes.Assets.at("javascripts/creating_mem.js")" type="text/javascript"></script>
 
 <div class="row">
@@ -9,8 +10,38 @@
         </span>
         <br>
         <img id="source" src="@routes.Assets.at(s"images/${mem.imageUrl}")" style="display: none"/>
-        <input id="up" type="text"/>
-        <br>
-        <input id="down" type="text"/>
+        @helper.form(routes.Memes.save(), 'id -> "myForm") {
+            @helper.inputText(memData("upText"), 'id -> "up")
+            @helper.inputText(memData("downText"), 'id -> "down")
+            @helper.inputText(memData("image"), 'id -> "image", 'type -> "hidden")
+            <input type="submit" value="Submit!" />
+        }
     </div>
 </div>
+
+
+
+@*<div class="col-md-offset-4 col-md-4">*@
+    @*<form action="">*@
+        @*<div class="form-group">*@
+            @*<input class="form-control" placeholder="Up text" id="up" type="text"/>*@
+        @*</div>*@
+        @*<div class="form-group">*@
+            @*<input class="form-control" placeholder="Down text" id="down" type="text"/>*@
+        @*</div>*@
+        @*<div class="form-group">*@
+            @*<button class="btn btn-default" type="submit">Save</button>*@
+        @*</div>*@
+    @*</form>*@
+
+    @*<div class="btn-group" role="group">*@
+        @*<a class="btn btn-primary" href="@routes.Memes.list()">*@
+            @*<span class="glyphicon glyphicon-align-justify"></span> Back to list*@
+        @*</a>*@
+        @*<a class="btn btn-primary" href="@routes.Memes.create(mem.id.get)">*@
+            @*<span class="glyphicon glyphicon-plus"></span> Create from template*@
+        @*</a>*@
+
+    @*</div>*@
+
+@*</div>*@

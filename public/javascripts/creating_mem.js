@@ -6,6 +6,10 @@ $(function() {
     var img = $("#source")[0];
 
     canvas_text.addEventListener("contextmenu", function(e) {
+        save();
+    });
+
+    function save() {
         console.log("putting onto canvas_text");
         context_text.clearRect(0, 0, canvas_text.width, canvas_text.height);
         context_text.drawImage(img, 0, 0);
@@ -17,6 +21,13 @@ $(function() {
         text = $("#down").val().toUpperCase();
         textArray = splitTextIntoArray(text, context_text, canvas_text);
         drawTextOnCanvas(textArray, context_text, canvas_text, "down");
+
+        var dataURL = canvas_text.toDataURL();
+        $("#image").val(dataURL);
+    }
+
+    $("#myForm").submit(function() {
+        save();
     });
 
 
