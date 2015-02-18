@@ -22,21 +22,23 @@ object Memes extends Controller {
 
   def list = Action {
     val memesList = database.withSession(implicit session => memes.list)
-    Ok(views.html.main.render("tytul", views.html.memes_list.render(memesList)))
+    Ok(views.html.memes_list.render("Home", memesList))
   }
 
   def show(id: Long) = Action {
     val mem = database.withSession(implicit session => memes.list.find(x => x.id.get==id).get)
-    Ok(views.html.main.render("tytul_mem", views.html.mem_page(mem)))
+    Ok(views.html.mem_page.render(s"Show mem: $id", mem))
   }
 
   def create(id: Long) = Action {
     val mem = database.withSession(implicit session => memes.list.find(x=>x.id.get==id).get)
-    Ok(views.html.main.render("create_mem", views.html.create_mem(mem, memData)))
+    Ok(views.html.create_mem.render("Create mem", mem, memData))
   }
 
   def save() = Action { implicit request =>
     val resultForm = memData.bindFromRequest.get
     Ok(Html("<img src=\"%s\"/>\n%s\n%s\n".format(resultForm.image, resultForm.upText, resultForm.downText)))
   }
+
+  def add() = TODO
 }

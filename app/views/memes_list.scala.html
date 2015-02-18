@@ -1,16 +1,18 @@
-@(memesList: List[Mem])
+@(title: String)(memesList: List[Mem])
 
-<div id="grid" data-columns>
-    @for(mem <- memesList) {
-        <div class="text-center mem">
-            <h2>@mem.name</h2>
-            <a href="@routes.Memes.show(mem.id.get)">
-                <img src="@routes.Assets.at(s"images/${mem.imageUrl}")" class="img-thumbnail"/>
-            </a>
-            <br>
-            <h4>(@mem.author)</h4>
-        </div>
-    }
-</div>
+@main(title) {
+    <div id="grid" data-columns>
+        @for(mem <- memesList) {
+            <div class="text-center mem">
+                <h2>@mem.name</h2>
+                <a href="@routes.Memes.show(mem.id.get)">
+                    <img src="@routes.Assets.at(s"images/${mem.imageUrl}")" class="img-thumbnail"/>
+                </a>
+                <br>
+                <h4>(@mem.author)</h4>
+            </div>
+        }
+    </div>
 
-<script src="@routes.Assets.at("javascripts/salvattore.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.at("javascripts/salvattore.js")" type="text/javascript"></script>
+}
