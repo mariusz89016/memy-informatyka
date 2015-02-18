@@ -1,6 +1,9 @@
-@(title: String)(memesList: List[Mem])
+@(title: String)(memesList: List[Mem])(implicit flash: Flash)
 
 @main(title) {
+    @if(flash.get("success")) {
+        <p class="bg-success">SUCCESS</p>
+    }
     <div id="grid" data-columns>
         @for(mem <- memesList) {
             <div class="text-center mem">

@@ -20,9 +20,9 @@ object Memes extends Controller {
     "Data image" -> text
   )(MemData.apply)(MemData.unapply))
 
-  def list = Action {
+  def list = Action { implicit request =>
     val memesList = database.withSession(implicit session => memes.list)
-    Ok(views.html.memes_list.render("Home", memesList))
+    Ok(views.html.memes_list.render("Home", memesList, request.flash))
   }
 
   def show(id: Long) = Action {
@@ -40,5 +40,21 @@ object Memes extends Controller {
     Ok(Html("<img src=\"%s\"/>\n%s\n%s\n".format(resultForm.image, resultForm.upText, resultForm.downText)))
   }
 
-  def add() = TODO
+  def add() = Action {
+    Ok(views.html.add_mem("Add mem template"))
+  }
+
+  def saveTemplate() = Action(parse.multipartFormData) { implicit request =>
+    request.body.file("image").map { image =>
+      import java.io.File
+      val filename = image.filename
+      val contentType = image.contentType
+      image.ref.moveTo(new File(s"public/images/$filename"), replace = false)
+      Redirect(routes.Memes.list()).flashing(
+        "success" -> "File uploaded!"
+      )
+    }.getOrElse {
+      Redirect(routes.Memes.list())
+    }
+  }
 }

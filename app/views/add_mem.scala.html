@@ -1,0 +1,8 @@
+@(title: String)
+
+@main(title) {
+    @helper.form(routes.Memes.saveTemplate(), 'enctype -> "multipart/form-data") {
+        <input type="file" name="image"/>
+        <input type="submit" class="btn btn-default" value="Submit!"/>
+    }
+}
