@@ -37,3 +37,8 @@ body > .container {
     position: absolute;
     z-index: 2;
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}

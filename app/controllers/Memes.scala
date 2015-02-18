@@ -15,9 +15,9 @@ object Memes extends Controller {
   val memes = TableQuery[Memes]
 
   val memData = Form(mapping(
-    "upText" -> text,
-    "downText" -> text,
-    "image" -> text
+    "Up text" -> text,
+    "Down text" -> text,
+    "Data image" -> text
   )(MemData.apply)(MemData.unapply))
 
   def list = Action {
